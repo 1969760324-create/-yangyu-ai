@@ -26,9 +26,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Ne
 .hero h1{font-size:48px;font-weight:600;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,0.5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:40px}
 .features-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:50px}
-.feat-chip{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.55);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:7px 14px;border-radius:20px;transition:all 0.2s;animation:fadeIn 0.6s ease both}
-.feat-chip:hover{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.9);border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.feat-chip{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.55);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:7px 14px;border-radius:20px;transition:all 0.2s}
+.feat-chip:hover{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.9);transform:translateY(-2px)}
 .stats-row{display:flex;justify-content:center;max-width:500px;margin:0 auto 60px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:18px;overflow:hidden}
 .stat-item{flex:1;text-align:center;padding:18px 10px;border-right:1px solid var(--border)}
 .stat-item:last-child{border-right:none}
@@ -36,11 +35,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Ne
 .stat-label{font-size:11px;color:var(--muted);margin-top:3px}
 .cases-section{max-width:880px;margin:0 auto 60px;padding:0 20px;position:relative;z-index:1}
 .section-title{text-align:center;font-size:13px;color:var(--muted);letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px}
-.section-title::before,.section-title::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1))}
-.section-title::after{background:linear-gradient(90deg,rgba(255,255,255,0.1),transparent)}
+.section-title::before{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1))}
+.section-title::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.1),transparent)}
 .cases-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:600px){.cases-row{grid-template-columns:1fr}}
-.case-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:18px;transition:all 0.2s;animation:fadeIn 0.5s ease both}
+.case-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:18px;transition:all 0.2s}
 .case-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.12);transform:translateY(-3px)}
 .case-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .case-avatar{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(255,255,255,0.06);border:1px solid var(--border)}
@@ -56,7 +55,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Ne
 .mode-row{display:flex;gap:8px;margin-bottom:18px}
 .mode-btn{flex:1;padding:10px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:13px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px}
 .mode-btn.active{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:#fff}
-.mode-btn:hover:not(.active){background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.6)}
 .mode-tag{font-size:9px;padding:2px 6px;border-radius:6px;background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.3);color:#a5b4fc}
 .input-label{font-size:12px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 textarea{width:100%;padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);outline:none;background:rgba(255,255,255,0.04);color:#fff;font-size:14px;font-family:inherit;transition:0.2s;resize:none;height:110px;line-height:1.7}
@@ -84,7 +82,7 @@ textarea::placeholder{color:rgba(255,255,255,0.18)}
 .loading-sub{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.6}
 .loading-dots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
 .dot-step{font-size:11px;color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:5px 14px;border-radius:20px;transition:all 0.4s}
-.dot-step.on{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.09);box-shadow:0 0 12px rgba(255,255,255,0.08)}
+.dot-step.on{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.09)}
 .dot-step.done{color:rgba(255,255,255,0.3);border-color:rgba(255,255,255,0.07)}
 .result-wrap{display:none;margin-top:28px}
 .result-wrap.active{display:block}
@@ -94,8 +92,7 @@ textarea::placeholder{color:rgba(255,255,255,0.18)}
 .action-btns{display:flex;gap:8px}
 .action-btn{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all 0.2s;font-family:inherit}
 .action-btn:hover{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.07)}
-.score-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:22px;padding:26px;margin-bottom:14px;animation:fadeUp 0.5s ease both;position:relative;overflow:hidden}
-.score-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent)}
+.score-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:22px;padding:26px;margin-bottom:14px;animation:fadeUp 0.5s ease both}
 .score-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:20px;flex-wrap:wrap}
 .score-big{font-size:64px;font-weight:300;letter-spacing:-4px;line-height:1;background:linear-gradient(135deg,#fff,rgba(255,255,255,0.5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .score-big-sub{font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:1px}
@@ -110,14 +107,14 @@ textarea::placeholder{color:rgba(255,255,255,0.18)}
 .score-val{font-size:12px;color:var(--muted);width:26px;text-align:right}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 @media(max-width:580px){.grid{grid-template-columns:1fr}}
-.card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:20px;padding:22px;animation:fadeUp 0.5s ease both;transition:all 0.25s;position:relative;overflow:hidden}
+.card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:20px;padding:22px;animation:fadeUp 0.5s ease both;transition:all 0.25s}
 .card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.12);transform:translateY(-3px);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
 .card.full{grid-column:1/-1}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .card-top-left{display:flex;align-items:center;gap:10px}
 .card-icon{width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.card-label{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:0.3px;font-weight:500}
+.card-label{font-size:12px;color:rgba(255,255,255,0.5);font-weight:500}
 .copy-btn{font-size:11px;color:rgba(255,255,255,0.18);background:none;border:none;cursor:pointer;padding:3px 8px;border-radius:6px;transition:all 0.2s;font-family:inherit}
 .copy-btn:hover{color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.06)}
 .card-content{font-size:13px;line-height:1.85;color:rgba(255,255,255,0.72);word-break:break-word}
@@ -134,7 +131,16 @@ textarea::placeholder{color:rgba(255,255,255,0.18)}
 .script-tip{font-size:11px;color:rgba(255,255,255,0.3);margin-top:7px;font-style:italic}
 .seg-label{font-size:11px;color:var(--muted);letter-spacing:2px;display:flex;align-items:center;gap:10px;margin:20px 0 14px}
 .seg-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
-.faq-section{max-width:880px;margin:40px auto 0;padding:0 20px 80px;position:relative;z-index:1}
+.hist-section{max-width:880px;margin:0 auto 40px;padding:0 20px;position:relative;z-index:1}
+.hist-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.hist-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all 0.2s;gap:10px}
+.hist-item:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12)}
+.hist-text{font-size:13px;color:rgba(255,255,255,0.6);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist-time{font-size:11px;color:var(--muted);flex-shrink:0}
+.hist-del{font-size:12px;color:rgba(255,255,255,0.15);background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:6px;transition:all 0.2s;font-family:inherit}
+.hist-del:hover{color:rgba(255,100,100,0.8);background:rgba(255,60,60,0.08)}
+.hist-empty{font-size:13px;color:rgba(255,255,255,0.2);text-align:center;padding:20px 0}
+.faq-section{max-width:880px;margin:0 auto;padding:0 20px 80px;position:relative;z-index:1}
 .faq-item{border-bottom:1px solid var(--border);overflow:hidden}
 .faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 0;cursor:pointer;font-size:14px;font-weight:500;color:rgba(255,255,255,0.8);transition:color 0.2s;user-select:none}
 .faq-q:hover{color:#fff}
@@ -168,14 +174,14 @@ textarea::placeholder{color:rgba(255,255,255,0.18)}
   <h1>像系统一样<br>分析你的抖音</h1>
   <div class="hero-sub">全维度账号诊断 · 爆款视频拆片 · 钩子文案模板<br>人设打造 · 竞品对标 · 变现路径 · 7天执行计划</div>
   <div class="features-row">
-    <div class="feat-chip" style="animation-delay:0.05s">🎯 账号定位诊断</div>
-    <div class="feat-chip" style="animation-delay:0.1s">🎬 爆款拆片分析</div>
-    <div class="feat-chip" style="animation-delay:0.15s">🪝 钩子文案生成</div>
-    <div class="feat-chip" style="animation-delay:0.2s">👤 人设打造方案</div>
-    <div class="feat-chip" style="animation-delay:0.25s">🔍 竞品对标策略</div>
-    <div class="feat-chip" style="animation-delay:0.3s">💰 变现路径规划</div>
-    <div class="feat-chip" style="animation-delay:0.35s">📅 7天起号计划</div>
-    <div class="feat-chip" style="animation-delay:0.4s">⚡ 实时AI生成</div>
+    <div class="feat-chip">🎯 账号定位诊断</div>
+    <div class="feat-chip">🎬 爆款拆片分析</div>
+    <div class="feat-chip">🪝 钩子文案生成</div>
+    <div class="feat-chip">👤 人设打造方案</div>
+    <div class="feat-chip">🔍 竞品对标策略</div>
+    <div class="feat-chip">💰 变现路径规划</div>
+    <div class="feat-chip">📅 7天起号计划</div>
+    <div class="feat-chip">⚡ 实时AI生成</div>
   </div>
   <div class="stats-row">
     <div class="stat-item"><div class="stat-num">9+</div><div class="stat-label">分析维度</div></div>
@@ -188,11 +194,432 @@ textarea::placeholder{color:rgba(255,255,255,0.18)}
 <div class="cases-section">
   <div class="section-title">真实案例参考</div>
   <div class="cases-row">
-    <div class="case-card" style="animation-delay:0.05s">
+    <div class="case-card">
       <div class="case-header"><div class="case-avatar">🔧</div><div><div class="case-name">@汽修老王</div><div class="case-niche">路虎维修赛道</div></div></div>
       <div class="case-result">通过AI分析优化内容结构，聚焦路虎车主痛点，30天涨粉1.2万，首条爆款播放38万。</div>
       <div class="case-tag">↑ 30天 +12000粉</div>
     </div>
-    <div class="case-card" style="animation-delay:0.1s">
+    <div class="case-card">
       <div class="case-header"><div class="case-avatar">🍳</div><div><div class="case-name">@家常菜小芳</div><div class="case-niche">美食赛道</div></div></div>
-      <div class="case-result">重新定位"上班族10分钟快手
+      <div class="case-result">重新定位"上班族10分钟快手菜"，利用AI拆片优化开场结构，单视频破百万播放。</div>
+      <div class="case-tag">↑ 单视频 100万+</div>
+    </div>
+    <div class="case-card">
+      <div class="case-header"><div class="case-avatar">💪</div><div><div class="case-name">@健身教练Lisa</div><div class="case-niche">健身减脂赛道</div></div></div>
+      <div class="case-result">AI优化人设标签和变现路径，从0到私教课月收入突破2万，粉丝转化率提升3倍。</div>
+      <div class="case-tag">↑ 月收入 +20000</div>
+    </div>
+  </div>
+</div>
+
+<div class="analyze-section">
+  <div class="section-divider">开始分析</div>
+  <div class="glass">
+    <div class="mode-row">
+      <button class="mode-btn active" id="mode-deep" onclick="setMode('deep')">🧠 深度思考 <span class="mode-tag">推荐</span></button>
+      <button class="mode-btn" id="mode-fast" onclick="setMode('fast')">⚡ 快速分析</button>
+    </div>
+    <div class="input-label">输入账号信息越详细，分析越精准</div>
+    <textarea id="inp" placeholder="例如：@汽修老王，专注路虎维修20年，前4S店技术经理，现独立开店&#10;目标人群：25-45岁路虎车主，解决维修贵/被坑的问题&#10;现状：500粉，发了10条视频，播放量500以下"></textarea>
+    <div class="btn-row">
+      <button class="btn" id="btn" onclick="runAI()">⚡ 启动AI分析</button>
+      <button class="btn-clear" onclick="clearAll()">清空</button>
+    </div>
+  </div>
+
+  <div class="error-box" id="errBox"></div>
+
+  <div class="loading" id="loading">
+    <div class="spinner-wrap">
+      <div class="ring ring1"></div>
+      <div class="ring ring2"></div>
+      <div class="ring ring3"></div>
+    </div>
+    <div class="loading-title" id="loadTitle">AI 深度思考中</div>
+    <div class="loading-sub" id="loadSub">正在对账号进行全维度深度分析<br>预计需要 30-60 秒，请耐心等待...</div>
+    <div class="loading-dots">
+      <div class="dot-step" id="s1">账号定位</div>
+      <div class="dot-step" id="s2">流量诊断</div>
+      <div class="dot-step" id="s3">内容评估</div>
+      <div class="dot-step" id="s4">人设分析</div>
+      <div class="dot-step" id="s5">拆片建模</div>
+      <div class="dot-step" id="s6">钩子提炼</div>
+      <div class="dot-step" id="s7">爆款机会</div>
+      <div class="dot-step" id="s8">变现路径</div>
+      <div class="dot-step" id="s9">生成计划</div>
+    </div>
+  </div>
+
+  <div class="result-wrap" id="resultWrap">
+    <div class="result-header">
+      <div class="result-title"><div class="result-title-dot"></div>AI 深度分析报告已生成</div>
+      <div class="action-btns">
+        <button class="action-btn" onclick="copyAll()">📋 复制报告</button>
+      </div>
+    </div>
+    <div class="score-card">
+      <div class="score-top">
+        <div><div class="score-big" id="totalNum">0</div><div class="score-big-sub">综合评分 / 100</div></div>
+        <div class="score-tags">
+          <div class="score-tag-box"><div class="score-tag-num" id="levelText">--</div><div class="score-tag-label">账号等级</div></div>
+          <div class="score-tag-box"><div class="score-tag-num" id="potentialText">--</div><div class="score-tag-label">增长潜力</div></div>
+        </div>
+      </div>
+      <div id="scoreBars"></div>
+    </div>
+
+    <div class="seg-label">基础诊断</div>
+    <div class="grid">
+      <div class="card" style="animation-delay:0.05s">
+        <div class="card-top"><div class="card-top-left"><div class="card-icon">🎯</div><div class="card-label">账号定位分析</div></div><button class="copy-btn" onclick="copyCard('positioning')">复制</button></div>
+        <div class="card-content" id="content-positioning"></div>
+      </div>
+      <div class="card" style="animation-delay:0.1s">
+        <div class="card-top"><div class="card-top-left"><div class="card-icon">📉</div><div class="card-label">流量问题诊断</div></div><button class="copy-btn" onclick="copyCard('traffic')">复制</button></div>
+        <div class="card-content" id="content-traffic"></div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card" style="animation-delay:0.15s">
+        <div class="card-top"><div class="card-top-left"><div class="card-icon">📝</div><div class="card-label">内容问题分析</div></div><button class="copy-btn" onclick="copyCard('content')">复制</button></div>
+        <div class="card-content" id="content-content"></div>
+      </div>
+      <div class="card" style="animation-delay:0.2s">
+        <div class="card-top"><div class="card-top-left"><div class="card-icon">👤</div><div class="card-label">人设打造建议</div></div><button class="copy-btn" onclick="copyCard('persona')">复制</button></div>
+        <div class="card-content" id="content-persona"></div>
+      </div>
+    </div>
+
+    <div class="seg-label">爆款拆片</div>
+    <div class="jiepian-wrap" style="animation-delay:0.25s">
+      <div class="card-top"><div class="card-top-left"><div class="card-icon">🎬</div><div class="card-label">爆款视频结构拆解</div></div><button class="copy-btn" onclick="copyCard('jiepian')">复制</button></div>
+      <div id="content-jiepian"></div>
+    </div>
+    <div class="jiepian-wrap" style="animation-delay:0.3s">
+      <div class="card-top"><div class="card-top-left"><div class="card-icon">🪝</div><div class="card-label">爆款钩子文案模板</div></div><button class="copy-btn" onclick="copyCard('hooks')">复制</button></div>
+      <div id="content-hooks"></div>
+    </div>
+
+    <div class="seg-label">增长策略</div>
+    <div class="card full" style="animation-delay:0.35s">
+      <div class="card-top"><div class="card-top-left"><div class="card-icon">🚀</div><div class="card-label">爆款选题机会点</div></div><button class="copy-btn" onclick="copyCard('viral')">复制</button></div>
+      <div class="card-content" id="content-viral"></div>
+    </div>
+    <div class="grid">
+      <div class="card" style="animation-delay:0.4s">
+        <div class="card-top"><div class="card-top-left"><div class="card-icon">💰</div><div class="card-label">变现路径规划</div></div><button class="copy-btn" onclick="copyCard('monetize')">复制</button></div>
+        <div class="card-content" id="content-monetize"></div>
+      </div>
+      <div class="card" style="animation-delay:0.45s">
+        <div class="card-top"><div class="card-top-left"><div class="card-icon">🔍</div><div class="card-label">竞品对标策略</div></div><button class="copy-btn" onclick="copyCard('competitor')">复制</button></div>
+        <div class="card-content" id="content-competitor"></div>
+      </div>
+    </div>
+    <div class="card full" style="animation-delay:0.5s">
+      <div class="card-top"><div class="card-top-left"><div class="card-icon">📅</div><div class="card-label">7天起号执行计划</div></div><button class="copy-btn" onclick="copyCard('plan')">复制</button></div>
+      <div class="card-content" id="content-plan"></div>
+    </div>
+  </div>
+</div>
+
+<div class="hist-section">
+  <div class="section-title">分析历史记录</div>
+  <div class="hist-list" id="histList"></div>
+</div>
+
+<div class="faq-section">
+  <div class="section-title">常见问题</div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>分析结果准确吗？</span><span class="faq-arrow">▼</span></div>
+    <div class="faq-a">基于 DeepSeek 深度思考模型，结合抖音算法逻辑和内容运营经验生成。输入信息越详细，分析越精准。建议结合自身实际情况灵活运用。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>深度思考和快速分析有什么区别？</span><span class="faq-arrow">▼</span></div>
+    <div class="faq-a">深度思考使用 deepseek-reasoner 模型，多步推理后输出，分析更深入，耗时 30-60 秒。快速分析使用 deepseek-chat，10 秒内出结果，适合快速参考。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>如何让分析更准确？</span><span class="faq-arrow">▼</span></div>
+    <div class="faq-a">建议填写：账号名称、主要内容方向、目标人群、当前粉丝数、发布视频数、平均播放量、遇到的主要问题。信息越完整，AI 建议越有针对性。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>拆片模块是怎么工作的？</span><span class="faq-arrow">▼</span></div>
+    <div class="faq-a">AI 根据你的账号赛道和目标人群，拆解适合你的爆款视频结构，包括开场设计、内容节奏、冲突设置、干货输出和行动引导，每个环节都有具体话术模板。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>历史记录保存在哪里？</span><span class="faq-arrow">▼</span></div>
+    <div class="faq-a">历史记录保存在浏览器本地存储中，最多保留10条，不会上传到服务器，换浏览器或清除缓存后会消失。</div>
+  </div>
+</div>
+
+<div class="footer">阳鱼AI · DeepSeek 驱动 · 分析结果仅供参考 · © 2025</div>
+
+<script>
+const KEY = 'sk-85e4143f517248d382c8dc27d6b552bf';
+const STEPS = ['s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+let stepTimer = null;
+let currentMode = 'deep';
+
+// 粒子背景
+(function(){
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function Particle(){
+    this.x = Math.random()*W; this.y = Math.random()*H;
+    this.r = Math.random()*1.2+0.3;
+    this.vx = (Math.random()-0.5)*0.3; this.vy = (Math.random()-0.5)*0.3;
+    this.alpha = Math.random()*0.4+0.1; this.da = (Math.random()-0.5)*0.003;
+  }
+  Particle.prototype.update = function(){
+    this.x += this.vx; this.y += this.vy; this.alpha += this.da;
+    if(this.alpha<0.05||this.alpha>0.5) this.da*=-1;
+    if(this.x<0) this.x=W; if(this.x>W) this.x=0;
+    if(this.y<0) this.y=H; if(this.y>H) this.y=0;
+  };
+  Particle.prototype.draw = function(){
+    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,'+this.alpha+')'; ctx.fill();
+  };
+  function init(){
+    resize(); particles=[];
+    const count=Math.floor((W*H)/12000);
+    for(let i=0;i<count;i++) particles.push(new Particle());
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{ p.update(); p.draw(); });
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<100){
+          ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.strokeStyle='rgba(255,255,255,'+(0.05*(1-dist/100))+')'; ctx.lineWidth=0.5; ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',init); init(); draw();
+})();
+
+function toggleFaq(el){
+  const item=el.parentElement, isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+function setMode(m){
+  currentMode=m;
+  document.getElementById('mode-deep').classList.toggle('active',m==='deep');
+  document.getElementById('mode-fast').classList.toggle('active',m==='fast');
+  document.getElementById('loadTitle').textContent = m==='deep'?'AI 深度思考中':'AI 快速分析中';
+  document.getElementById('loadSub').innerHTML = m==='deep'
+    ?'正在对账号进行全维度深度分析<br>预计需要 30-60 秒，请耐心等待...'
+    :'快速分析模式，预计 10 秒内完成...';
+}
+
+function startSteps(){
+  let i=0;
+  const interval = currentMode==='deep'?4000:800;
+  STEPS.forEach(s=>{ const el=document.getElementById(s); if(el) el.className='dot-step'; });
+  stepTimer=setInterval(()=>{
+    if(i<STEPS.length){
+      if(i>0){ const prev=document.getElementById(STEPS[i-1]); if(prev) prev.className='dot-step done'; }
+      const cur=document.getElementById(STEPS[i]); if(cur) cur.className='dot-step on'; i++;
+    }
+  },interval);
+}
+
+function stopSteps(){
+  clearInterval(stepTimer);
+  STEPS.forEach(s=>{ const el=document.getElementById(s); if(el) el.className='dot-step done'; });
+}
+
+function clearAll(){
+  document.getElementById('inp').value='';
+  document.getElementById('resultWrap').classList.remove('active');
+  document.getElementById('errBox').className='error-box';
+}
+
+function fmt(t){
+  if(t===null||t===undefined) return '';
+  t=String(t);
+  return t
+    .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
+    .replace(/^[-•]\s(.+)$/gm,'<div class="line"><span class="line-dot"></span><span>$1</span></div>')
+    .replace(/^(\d+)\.\s(.+)$/gm,'<div class="line"><span class="line-num">$1.</span><span>$2</span></div>')
+    .replace(/(第[1-7]天[：:][^\n]+)/g,'<div style="margin:5px 0"><b>$1</b></div>');
+}
+
+function setCard(id,content){
+  const el=document.getElementById('content-'+id);
+  if(el) el.innerHTML=fmt(content);
+}
+
+function renderScores(scores){
+  const fields=[['内容质量','content'],['定位清晰','position'],['互动转化','interact'],['流量潜力','traffic'],['变现成熟','monetize'],['人设强度','persona']];
+  const total=Math.round(fields.reduce((s,[,k])=>s+(scores[k]||0),0)/fields.length);
+  let html='';
+  fields.forEach(([n,k])=>{
+    const v=scores[k]||0;
+    html+=`<div class="score-row"><div class="score-name">${n}</div><div class="score-bar"><div class="score-fill" data-w="${v}"></div></div><div class="score-val">${v}</div></div>`;
+  });
+  document.getElementById('scoreBars').innerHTML=html;
+  document.getElementById('levelText').textContent=total>=80?'优质':total>=60?'成长':total>=40?'起步':'萌新';
+  document.getElementById('potentialText').textContent=total>=75?'高':total>=55?'中':'待挖';
+  setTimeout(()=>{
+    document.querySelectorAll('.score-fill').forEach(el=>{ el.style.width=el.getAttribute('data-w')+'%'; });
+    let cur=0;
+    const t=setInterval(()=>{
+      cur=Math.min(cur+2,total);
+      const el=document.getElementById('totalNum'); if(el) el.textContent=cur;
+      if(cur>=total) clearInterval(t);
+    },25);
+  },400);
+}
+
+function renderJiepian(data){
+  if(!data||!Array.isArray(data)) return;
+  const el=document.getElementById('content-jiepian');
+  if(el) el.innerHTML=data.map((b,i)=>`<div class="script-block"><div class="script-tag">${b.part||('第'+(i+1)+'部分')}</div><div class="script-text">${b.content||''}</div>${b.tip?`<div class="script-tip">💡 ${b.tip}</div>`:''}</div>`).join('');
+}
+
+function renderHooks(data){
+  if(!data||!Array.isArray(data)) return;
+  const el=document.getElementById('content-hooks');
+  if(el) el.innerHTML=data.map((h,i)=>`<div class="script-block"><div class="script-tag">${h.type||('钩子'+(i+1))}</div><div class="script-text">"${h.text||''}"</div>${h.reason?`<div class="script-tip">▸ ${h.reason}</div>`:''}</div>`).join('');
+}
+
+function copyCard(id){
+  const el=document.getElementById('content-'+id); if(!el) return;
+  navigator.clipboard.writeText(el.innerText||el.textContent).then(()=>{
+    const btn=el.closest('.card,.jiepian-wrap')?.querySelector('.copy-btn');
+    if(btn){ const o=btn.textContent; btn.textContent='✓已复制'; setTimeout(()=>btn.textContent=o,1500); }
+  }).catch(()=>{});
+}
+
+function copyAll(){
+  const ids=['positioning','traffic','content','persona','jiepian','hooks','viral','monetize','competitor','plan'];
+  let text='【阳鱼AI分析报告】\n\n';
+  ids.forEach(id=>{
+    const el=document.getElementById('content-'+id);
+    const label=el?.closest('.card,.jiepian-wrap')?.querySelector('.card-label')?.textContent;
+    if(el) text+=(label?`【${label}】\n`:'')+( el.innerText||'')+'\n\n';
+  });
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.querySelector('.action-btn');
+    if(btn){ btn.textContent='✓ 已复制'; setTimeout(()=>btn.textContent='📋 复制报告',2000); }
+  }).catch(()=>{});
+}
+
+// 历史记录
+function saveHistory(input){
+  let list=JSON.parse(localStorage.getItem('yangyu_hist')||'[]');
+  list.unshift({text:input, time:new Date().toLocaleString('zh',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})});
+  if(list.length>10) list=list.slice(0,10);
+  localStorage.setItem('yangyu_hist',JSON.stringify(list));
+  renderHistory();
+}
+
+function renderHistory(){
+  const list=JSON.parse(localStorage.getItem('yangyu_hist')||'[]');
+  const el=document.getElementById('histList'); if(!el) return;
+  if(list.length===0){ el.innerHTML='<div class="hist-empty">暂无历史记录</div>'; return; }
+  el.innerHTML=list.map((h,i)=>`
+    <div class="hist-item" onclick="loadHist(${i})">
+      <div class="hist-text">${h.text}</div>
+      <div class="hist-time">${h.time}</div>
+      <button class="hist-del" onclick="delHist(event,${i})">✕</button>
+    </div>`).join('');
+}
+
+function loadHist(i){
+  const list=JSON.parse(localStorage.getItem('yangyu_hist')||'[]');
+  if(list[i]){ document.getElementById('inp').value=list[i].text; window.scrollTo({top:document.querySelector('.analyze-section').offsetTop-80,behavior:'smooth'}); }
+}
+
+function delHist(e,i){
+  e.stopPropagation();
+  let list=JSON.parse(localStorage.getItem('yangyu_hist')||'[]');
+  list.splice(i,1);
+  localStorage.setItem('yangyu_hist',JSON.stringify(list));
+  renderHistory();
+}
+
+renderHistory();
+
+async function runAI(){
+  const val=document.getElementById('inp').value.trim();
+  if(!val){
+    document.getElementById('inp').style.borderColor='rgba(255,80,80,0.4)';
+    setTimeout(()=>document.getElementById('inp').style.borderColor='',2000); return;
+  }
+  const btn=document.getElementById('btn');
+  btn.disabled=true; btn.textContent='分析中...';
+  document.getElementById('errBox').className='error-box';
+  document.getElementById('resultWrap').classList.remove('active');
+  document.getElementById('loading').className='loading active';
+  startSteps();
+
+  const model = currentMode==='deep'?'deepseek-reasoner':'deepseek-chat';
+  const prompt=`你是顶级抖音代运营专家，拥有10年经验，服务过500+账号。请对以下账号进行深度分析，要求专业、具体、可落地。
+
+账号信息：${val}
+
+严格返回JSON，不要输出任何其他内容：
+{"scores":{"content":75,"position":80,"interact":60,"traffic":70,"monetize":50,"persona":65},"positioning":"账号定位深度分析200字","traffic":"流量问题\\n- 问题1原因及影响\\n- 问题2\\n- 问题3\\n- 问题4","content":"内容问题\\n- 问题1改进方向\\n- 问题2\\n- 问题3\\n- 问题4","persona":"人设打造建议：核心词/差异化标签/口头禅/视觉风格/记忆符号","jiepian":[{"part":"第1-3秒（黄金开场）","content":"具体开场结构和话术","tip":"设计原因"},{"part":"第4-15秒（价值铺垫）","content":"内容展开方式","tip":"关键技巧"},{"part":"第16-30秒（高潮冲突）","content":"冲突点设计","tip":"爆款核心"},{"part":"第31-45秒（干货输出）","content":"核心价值交付","tip":"留住用户"},{"part":"最后5秒（行动引导）","content":"CTA设计","tip":"转化技巧"}],"hooks":[{"type":"痛点钩子","text":"具体话术模板","reason":"为什么有效"},{"type":"好奇钩子","text":"具体话术模板","reason":"为什么有效"},{"type":"反常识钩子","text":"具体话术模板","reason":"为什么有效"},{"type":"数字钩子","text":"具体话术模板","reason":"为什么有效"},{"type":"身份钩子","text":"具体话术模板","reason":"为什么有效"}],"viral":"爆款选题\\n🔥 选题1 - 理由\\n⚡ 选题2 - 理由\\n🌱 选题3 - 理由\\n🔥 选题4\\n⚡ 选题5\\n🌱 选题6\\n🔥 选题7\\n⚡ 选题8","monetize":"变现路径\\n- 方式1操作方法预估收益\\n- 方式2\\n- 方式3\\n- 方式4","competitor":"竞品对标：赛道格局分析+3个差异化切入点+需学习的做法+需避免的做法","plan":"第1天：定位优化 - 具体任务\\n第2天：对标拆解 - 具体任务\\n第3天：内容测试 - 具体任务\\n第4天：爆款复制 - 具体任务\\n第5天：人设强化 - 具体任务\\n第6天：流量放大 - 具体任务\\n第7天：引流变现 - 具体任务"}`;
+
+  try{
+    const res=await fetch('https://api.deepseek.com/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY},
+      body:JSON.stringify({model,messages:[{role:'user',content:prompt}],max_tokens:6000,temperature:0.7})
+    });
+    if(!res.ok){
+      const e=await res.json().catch(()=>({}));
+      throw new Error('请求失败 '+res.status+(e.error?': '+e.error.message:''));
+    }
+    const data=await res.json();
+    const raw=data.choices?.[0]?.message?.content||'';
+    const m=raw.match(/\{[\s\S]*\}/);
+    if(!m) throw new Error('AI返回格式异常，请重试');
+    const r=JSON.parse(m[0]);
+
+    stopSteps();
+    document.getElementById('loading').className='loading';
+    document.getElementById('resultWrap').classList.add('active');
+
+    renderScores(r.scores||{});
+    setCard('positioning',r.positioning);
+    setCard('traffic',r.traffic);
+    setCard('content',r.content);
+    setCard('persona',r.persona);
+    renderJiepian(r.jiepian);
+    renderHooks(r.hooks);
+    setCard('viral',r.viral);
+    setCard('monetize',r.monetize);
+    setCard('competitor',r.competitor);
+    setCard('plan',r.plan);
+
+    saveHistory(val);
+
+    setTimeout(()=>{ document.getElementById('resultWrap').scrollIntoView({behavior:'smooth',block:'start'}); },200);
+
+  }catch(e){
+    stopSteps();
+    document.getElementById('loading').className='loading';
+    const eb=document.getElementById('errBox');
+    eb.textContent='⚠️ '+(e.message||'网络异常，请重试');
+    eb.className='error-box active';
+  }finally{
+    btn.disabled=false;
+    btn.textContent='⚡ 启动AI分析';
+  }
+}
+
+document.getElementById('inp').addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.ctrlKey) runAI(); });
+</script>
+</body>
+</html>
