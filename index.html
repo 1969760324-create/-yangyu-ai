@@ -7,145 +7,359 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:radial-gradient(circle at top,#1a1f2e,#05060a);color:#fff;overflow-x:hidden;min-height:100vh}
-.topbar{display:flex;justify-content:space-between;padding:18px 30px;font-size:13px;color:rgba(255,255,255,0.4);border-bottom:1px solid rgba(255,255,255,0.05)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 30px;font-size:13px;color:rgba(255,255,255,0.4);border-bottom:1px solid rgba(255,255,255,0.05);position:sticky;top:0;z-index:100;background:rgba(5,6,10,0.8);backdrop-filter:blur(20px)}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.top-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;box-shadow:0 0 8px #4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 .hero{text-align:center;padding:70px 20px 30px}
-.hero h1{font-size:36px;font-weight:500;letter-spacing:-1px;line-height:1.2}
-.hero p{color:rgba(255,255,255,0.45);margin-top:12px;font-size:14px}
-.container{max-width:860px;margin:auto;padding:20px 20px 60px}
-.glass{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:22px;backdrop-filter:blur(30px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
-.input-label{font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:10px;letter-spacing:0.5px}
-textarea{width:100%;padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);outline:none;background:rgba(255,255,255,0.05);color:#fff;font-size:14px;font-family:inherit;transition:0.2s;resize:none;height:90px;line-height:1.6}
-textarea:focus{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)}
-textarea::placeholder{color:rgba(255,255,255,0.25)}
-.btn{width:100%;margin-top:14px;padding:15px;border-radius:14px;border:none;cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;background:linear-gradient(135deg,#ffffff,#c0c0c0);color:#000;transition:all 0.2s}
-.btn:disabled{opacity:0.5;cursor:not-allowed}
-.loading{display:none;text-align:center;padding:50px 20px}
+.hero-badge{display:inline-block;font-size:11px;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:4px 14px;border-radius:20px;margin-bottom:20px;letter-spacing:1px}
+.hero h1{font-size:40px;font-weight:500;letter-spacing:-1.5px;line-height:1.2;margin-bottom:14px}
+.hero p{color:rgba(255,255,255,0.4);font-size:14px;line-height:1.8}
+.stats{display:flex;justify-content:center;gap:30px;margin-top:24px;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-size:22px;font-weight:600;color:#fff}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px}
+.container{max-width:880px;margin:auto;padding:20px 20px 80px}
+.glass{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:24px;backdrop-filter:blur(30px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.input-label{font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:10px;letter-spacing:0.5px;display:flex;align-items:center;gap:6px}
+.input-label::before{content:'';width:4px;height:4px;background:rgba(255,255,255,0.4);border-radius:50%;display:inline-block}
+textarea{width:100%;padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);outline:none;background:rgba(255,255,255,0.04);color:#fff;font-size:14px;font-family:inherit;transition:0.2s;resize:none;height:100px;line-height:1.7}
+textarea:focus{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.18)}
+textarea::placeholder{color:rgba(255,255,255,0.2)}
+.btn-row{display:flex;gap:10px;margin-top:14px}
+.btn{flex:1;padding:15px;border-radius:14px;border:none;cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;background:linear-gradient(135deg,#ffffff,#d0d0d0);color:#000;transition:all 0.2s;letter-spacing:0.3px}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,255,255,0.12)}
+.btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+.btn-clear{flex:0 0 auto;padding:15px 20px;border-radius:14px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;font-size:14px;font-family:inherit;background:transparent;color:rgba(255,255,255,0.4);transition:all 0.2s}
+.btn-clear:hover{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7)}
+.loading{display:none;text-align:center;padding:60px 20px}
 .loading.active{display:block}
-.spinner{width:48px;height:48px;margin:0 auto 20px;border:2px solid rgba(255,255,255,0.1);border-top-color:rgba(255,255,255,0.8);border-radius:50%;animation:spin 0.8s linear infinite}
+.spinner-wrap{position:relative;width:60px;height:60px;margin:0 auto 24px}
+.spinner{position:absolute;inset:0;border:2px solid rgba(255,255,255,0.06);border-top-color:rgba(255,255,255,0.8);border-radius:50%;animation:spin 0.9s linear infinite}
+.spinner2{position:absolute;inset:8px;border:2px solid rgba(255,255,255,0.04);border-bottom-color:rgba(255,255,255,0.4);border-radius:50%;animation:spin 1.3s linear infinite reverse}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-size:14px;color:rgba(255,255,255,0.45);animation:breathe 2s ease infinite}
-@keyframes breathe{0%,100%{opacity:0.45}50%{opacity:0.9}}
-.loading-dots{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
-.dot-step{font-size:11px;color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:4px 12px;border-radius:20px;transition:all 0.3s}
-.dot-step.on{color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.08)}
-.dot-step.done{color:rgba(255,255,255,0.4)}
-.error-box{display:none;margin-top:16px;padding:14px 18px;border-radius:14px;background:rgba(255,60,60,0.08);border:1px solid rgba(255,60,60,0.2);color:rgba(255,120,120,0.9);font-size:13px;line-height:1.6}
+.loading-title{font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:6px;font-weight:500}
+.loading-sub{font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:24px}
+.loading-dots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.dot-step{font-size:11px;color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:5px 14px;border-radius:20px;transition:all 0.3s}
+.dot-step.on{color:rgba(255,255,255,0.9);border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.08)}
+.dot-step.done{color:rgba(255,255,255,0.35);border-color:rgba(255,255,255,0.08)}
+.error-box{display:none;margin-top:16px;padding:14px 18px;border-radius:14px;background:rgba(255,60,60,0.07);border:1px solid rgba(255,60,60,0.2);color:rgba(255,120,120,0.9);font-size:13px;line-height:1.6}
 .error-box.active{display:block}
-.grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:20px}
-@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
-.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;animation:fadeUp 0.4s ease both;transition:all 0.2s}
-.card:hover{background:rgba(255,255,255,0.05);transform:translateY(-2px)}
+/* 结果 */
+.result-wrap{display:none;margin-top:24px}
+.result-wrap.active{display:block}
+.result-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:gap}
+.result-title{font-size:13px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:8px}
+.result-title::before{content:'';width:7px;height:7px;background:#4ade80;border-radius:50%;box-shadow:0 0 8px #4ade80;display:inline-block}
+.copy-all-btn{font-size:12px;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.copy-all-btn:hover{color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15)}
+/* 评分卡 */
+.score-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:24px;margin-bottom:14px;animation:fadeUp 0.4s ease both}
+.score-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.score-left{}
+.score-big{font-size:56px;font-weight:300;letter-spacing:-3px;line-height:1;color:#fff}
+.score-big-label{font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;letter-spacing:1px}
+.score-right{display:flex;gap:12px}
+.score-tag{text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:10px 16px}
+.score-tag-num{font-size:18px;font-weight:500;color:#fff}
+.score-tag-label{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px}
+.score-bars{}
+.score-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.score-name{font-size:12px;color:rgba(255,255,255,0.4);width:68px;flex-shrink:0}
+.score-bar{flex:1;height:3px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,rgba(255,255,255,0.4),rgba(255,255,255,0.9));width:0;transition:width 1.2s ease}
+.score-val{font-size:12px;color:rgba(255,255,255,0.4);width:26px;text-align:right}
+/* 卡片网格 */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:700px){.grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.grid-3{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;animation:fadeUp 0.4s ease both;transition:all 0.2s;position:relative}
+.card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.11);transform:translateY(-2px)}
 .card.full{grid-column:1/-1}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.card-icon{width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.card-label{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.5px}
-.card-content{font-size:13px;line-height:1.8;color:rgba(255,255,255,0.8);word-break:break-word}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-top-left{display:flex;align-items:center;gap:10px}
+.card-icon{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.card-label{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.3px;font-weight:500}
+.copy-btn{font-size:11px;color:rgba(255,255,255,0.2);background:none;border:none;cursor:pointer;padding:3px 8px;border-radius:6px;transition:all 0.2s;font-family:inherit}
+.copy-btn:hover{color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.06)}
+.card-content{font-size:13px;line-height:1.85;color:rgba(255,255,255,0.75);word-break:break-word}
 .card-content b{color:#fff;font-weight:600}
-.score-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.score-name{font-size:12px;color:rgba(255,255,255,0.45);width:72px;flex-shrink:0}
-.score-bar{flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
-.score-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,rgba(255,255,255,0.5),rgba(255,255,255,0.9));width:0;transition:width 1s ease}
-.score-val{font-size:12px;color:rgba(255,255,255,0.5);width:28px;text-align:right}
-.total-score{text-align:center;margin-bottom:18px}
-.total-num{font-size:52px;font-weight:300;letter-spacing:-2px;color:#fff;line-height:1}
-.total-label{font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;letter-spacing:1px}
-.pay{margin-top:24px;padding:28px 24px;border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);text-align:center}
-.pay-tag{display:inline-block;font-size:11px;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:3px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:1px}
-.pay h3{font-size:20px;font-weight:500;margin-bottom:8px}
-.pay p{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:20px;line-height:1.7}
-.pay-features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
-@media(max-width:480px){.pay-features{grid-template-columns:1fr}}
-.pay-feat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:14px 12px}
-.pay-feat-icon{font-size:20px;margin-bottom:6px}
-.pay-feat-name{font-size:12px;font-weight:600;margin-bottom:3px}
-.pay-feat-desc{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.5}
-.pay-price{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:16px}
-.pay-price .old{font-size:13px;color:rgba(255,255,255,0.25);text-decoration:line-through}
-.pay-price .now{font-size:32px;font-weight:600;color:#fff}
-.pay-btn{display:inline-block;min-width:200px;padding:14px 36px;border-radius:14px;border:none;cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;background:#fff;color:#000;transition:all 0.2s}
-.pay-btn:hover{transform:scale(1.02)}
-.pay-note{margin-top:12px;font-size:11px;color:rgba(255,255,255,0.2)}
+.card-content .line{display:flex;gap:8px;margin:4px 0;align-items:flex-start}
+.card-content .line-dot{flex-shrink:0;margin-top:6px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.3)}
+.card-content .line-arrow{flex-shrink:0;color:rgba(255,255,255,0.3);font-size:11px;margin-top:2px}
+/* 拆片模块专属 */
+.jiepian-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:22px;animation:fadeUp 0.4s ease both;margin-bottom:14px}
+.jiepian-title{font-size:13px;color:rgba(255,255,255,0.45);font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.jiepian-title::before{content:'';width:3px;height:14px;background:rgba(255,255,255,0.5);border-radius:2px;display:inline-block}
+.script-block{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.script-tag{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase}
+.script-text{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7}
+.script-tip{font-size:11px;color:rgba(255,255,255,0.3);margin-top:6px;font-style:italic}
+/* 标签 */
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tag{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.03)}
+.tag.hot{border-color:rgba(255,100,100,0.25);color:rgba(255,140,140,0.9);background:rgba(255,60,60,0.06)}
+.tag.warm{border-color:rgba(255,180,60,0.25);color:rgba(255,200,100,0.9);background:rgba(255,160,50,0.06)}
+.tag.cool{border-color:rgba(100,180,255,0.25);color:rgba(140,200,255,0.9);background:rgba(60,140,255,0.06)}
+/* 时间线 */
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.15),transparent)}
+.tl-item{position:relative;margin-bottom:14px;padding-left:14px}
+.tl-dot{position:absolute;left:-14px;top:4px;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3)}
+.tl-day{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:3px;letter-spacing:0.5px}
+.tl-title{font-size:13px;color:rgba(255,255,255,0.85);font-weight:500;margin-bottom:2px}
+.tl-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6}
+/* 分隔线 */
+.section-label{font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:2px;margin:20px 0 12px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.05)}
 </style>
 </head>
 <body>
+
 <div class="topbar">
-  <div>YANGYU SYSTEM</div>
+  <div class="topbar-left">
+    <div class="top-dot"></div>
+    <span>YANGYU SYSTEM</span>
+  </div>
   <div>抖音阳鱼AI智能体</div>
 </div>
+
 <div class="hero">
+  <div class="hero-badge">DEEPSEEK · 深度思考模式</div>
   <h1>像系统一样分析<br>你的抖音账号</h1>
-  <p>账号诊断 · 起号策略 · 爆款结构 · 变现路径</p>
+  <p>账号诊断 · 起号策略 · 爆款拆片 · 脚本模板 · 变现路径</p>
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">9大</div>
+      <div class="stat-label">分析维度</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">深度</div>
+      <div class="stat-label">AI思考</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">实时</div>
+      <div class="stat-label">生成报告</div>
+    </div>
+  </div>
 </div>
+
 <div class="container">
   <div class="glass">
     <div class="input-label">输入你的抖音账号 / 简介 / 定位描述</div>
-    <textarea id="inp" placeholder="例如：@汽修老王，专注路虎维修20年，前4S店技术经理，现独立开店，目标粉丝是路虎车主"></textarea>
-    <button class="btn" id="btn" onclick="runAI()">⚡ 启动AI分析系统</button>
+    <textarea id="inp" placeholder="越详细越准确&#10;例如：@汽修老王，专注路虎维修20年，前4S店技术经理，现独立开店&#10;目标人群：25-45岁路虎车主，想解决维修贵/被坑的问题"></textarea>
+    <div class="btn-row">
+      <button class="btn" id="btn" onclick="runAI()">⚡ 启动AI深度分析</button>
+      <button class="btn-clear" onclick="clearAll()">清空</button>
+    </div>
   </div>
+
   <div class="error-box" id="errBox"></div>
+
   <div class="loading" id="loading">
-    <div class="spinner"></div>
-    <div class="loading-text">DeepSeek AI 正在分析...</div>
+    <div class="spinner-wrap">
+      <div class="spinner"></div>
+      <div class="spinner2"></div>
+    </div>
+    <div class="loading-title">AI 深度思考中</div>
+    <div class="loading-sub">正在对你的账号进行全维度分析...</div>
     <div class="loading-dots">
       <div class="dot-step" id="s1">账号定位</div>
-      <div class="dot-step" id="s2">流量分析</div>
+      <div class="dot-step" id="s2">流量诊断</div>
       <div class="dot-step" id="s3">内容评估</div>
-      <div class="dot-step" id="s4">爆款挖掘</div>
-      <div class="dot-step" id="s5">变现规划</div>
-      <div class="dot-step" id="s6">生成计划</div>
+      <div class="dot-step" id="s4">人设分析</div>
+      <div class="dot-step" id="s5">拆片建模</div>
+      <div class="dot-step" id="s6">钩子提炼</div>
+      <div class="dot-step" id="s7">爆款机会</div>
+      <div class="dot-step" id="s8">变现路径</div>
+      <div class="dot-step" id="s9">生成计划</div>
     </div>
   </div>
-  <div class="grid" id="grid"></div>
-  <div class="pay" id="pay" style="display:none">
-    <div class="pay-tag">PRO 专业版</div>
-    <h3>解锁完整AI增长系统</h3>
-    <p>获取更深度的账号分析、爆款脚本库<br>以及30天定制代运营方案</p>
-    <div class="pay-features">
-      <div class="pay-feat">
-        <div class="pay-feat-icon">📜</div>
-        <div class="pay-feat-name">爆款脚本库</div>
-        <div class="pay-feat-desc">50+套垂类脚本开箱即用</div>
+
+  <div class="result-wrap" id="resultWrap">
+    <div class="result-top">
+      <div class="result-title">AI 深度分析报告</div>
+      <button class="copy-all-btn" onclick="copyAll()">复制全部报告</button>
+    </div>
+
+    <!-- 评分卡 -->
+    <div class="score-card" id="scoreCard">
+      <div class="score-top">
+        <div class="score-left">
+          <div class="score-big" id="totalNum">0</div>
+          <div class="score-big-label">综合评分 / 100</div>
+        </div>
+        <div class="score-right">
+          <div class="score-tag">
+            <div class="score-tag-num" id="levelText">--</div>
+            <div class="score-tag-label">账号等级</div>
+          </div>
+          <div class="score-tag">
+            <div class="score-tag-num" id="potentialText">--</div>
+            <div class="score-tag-label">增长潜力</div>
+          </div>
+        </div>
       </div>
-      <div class="pay-feat">
-        <div class="pay-feat-icon">🔍</div>
-        <div class="pay-feat-name">对标账号拆解</div>
-        <div class="pay-feat-desc">TOP20同赛道账号分析</div>
+      <div class="score-bars" id="scoreBars"></div>
+    </div>
+
+    <!-- 第一行：定位 + 流量 -->
+    <div class="section-label">基础诊断</div>
+    <div class="grid">
+      <div class="card" style="animation-delay:0.05s" id="card-positioning">
+        <div class="card-top">
+          <div class="card-top-left">
+            <div class="card-icon">🎯</div>
+            <div class="card-label">账号定位分析</div>
+          </div>
+          <button class="copy-btn" onclick="copyCard('positioning')">复制</button>
+        </div>
+        <div class="card-content" id="content-positioning"></div>
       </div>
-      <div class="pay-feat">
-        <div class="pay-feat-icon">📋</div>
-        <div class="pay-feat-name">30天代运营</div>
-        <div class="pay-feat-desc">每日选题+脚本+发布策略</div>
+      <div class="card" style="animation-delay:0.1s" id="card-traffic">
+        <div class="card-top">
+          <div class="card-top-left">
+            <div class="card-icon">📉</div>
+            <div class="card-label">流量问题诊断</div>
+          </div>
+          <button class="copy-btn" onclick="copyCard('traffic')">复制</button>
+        </div>
+        <div class="card-content" id="content-traffic"></div>
       </div>
     </div>
-    <div class="pay-price">
-      <span class="old">¥299</span>
-      <span class="now">¥99</span>
+
+    <!-- 第二行：内容 + 人设 -->
+    <div class="grid">
+      <div class="card" style="animation-delay:0.15s" id="card-content">
+        <div class="card-top">
+          <div class="card-top-left">
+            <div class="card-icon">📝</div>
+            <div class="card-label">内容问题分析</div>
+          </div>
+          <button class="copy-btn" onclick="copyCard('content')">复制</button>
+        </div>
+        <div class="card-content" id="content-content"></div>
+      </div>
+      <div class="card" style="animation-delay:0.2s" id="card-persona">
+        <div class="card-top">
+          <div class="card-top-left">
+            <div class="card-icon">👤</div>
+            <div class="card-label">人设打造建议</div>
+          </div>
+          <button class="copy-btn" onclick="copyCard('persona')">复制</button>
+        </div>
+        <div class="card-content" id="content-persona"></div>
+      </div>
     </div>
-    <button class="pay-btn" onclick="alert('功能即将上线，敬请期待！')">🔓 立即解锁</button>
-    <div class="pay-note">7天不满意退款 · 永久有效 · 每周更新</div>
+
+    <!-- 拆片模块 -->
+    <div class="section-label">爆款拆片</div>
+    <div class="jiepian-card" style="animation-delay:0.25s" id="card-jiepian">
+      <div class="card-top">
+        <div class="card-top-left">
+          <div class="card-icon">🎬</div>
+          <div class="card-label">爆款视频结构拆解</div>
+        </div>
+        <button class="copy-btn" onclick="copyCard('jiepian')">复制</button>
+      </div>
+      <div id="content-jiepian"></div>
+    </div>
+
+    <!-- 钩子文案 -->
+    <div class="jiepian-card" style="animation-delay:0.3s" id="card-hooks">
+      <div class="card-top">
+        <div class="card-top-left">
+          <div class="card-icon">🪝</div>
+          <div class="card-label">爆款钩子文案模板</div>
+        </div>
+        <button class="copy-btn" onclick="copyCard('hooks')">复制</button>
+      </div>
+      <div id="content-hooks"></div>
+    </div>
+
+    <!-- 爆款机会 -->
+    <div class="section-label">增长策略</div>
+    <div class="card full" style="animation-delay:0.35s" id="card-viral">
+      <div class="card-top">
+        <div class="card-top-left">
+          <div class="card-icon">🚀</div>
+          <div class="card-label">爆款选题机会点</div>
+        </div>
+        <button class="copy-btn" onclick="copyCard('viral')">复制</button>
+      </div>
+      <div class="card-content" id="content-viral"></div>
+    </div>
+
+    <!-- 变现 + 竞品 -->
+    <div class="grid">
+      <div class="card" style="animation-delay:0.4s" id="card-monetize">
+        <div class="card-top">
+          <div class="card-top-left">
+            <div class="card-icon">💰</div>
+            <div class="card-label">变现路径规划</div>
+          </div>
+          <button class="copy-btn" onclick="copyCard('monetize')">复制</button>
+        </div>
+        <div class="card-content" id="content-monetize"></div>
+      </div>
+      <div class="card" style="animation-delay:0.45s" id="card-competitor">
+        <div class="card-top">
+          <div class="card-top-left">
+            <div class="card-icon">🔍</div>
+            <div class="card-label">竞品对标策略</div>
+          </div>
+          <button class="copy-btn" onclick="copyCard('competitor')">复制</button>
+        </div>
+        <div class="card-content" id="content-competitor"></div>
+      </div>
+    </div>
+
+    <!-- 7天计划 -->
+    <div class="card full" style="animation-delay:0.5s" id="card-plan">
+      <div class="card-top">
+        <div class="card-top-left">
+          <div class="card-icon">📅</div>
+          <div class="card-label">7天起号执行计划</div>
+        </div>
+        <button class="copy-btn" onclick="copyCard('plan')">复制</button>
+      </div>
+      <div class="card-content" id="content-plan"></div>
+    </div>
+
   </div>
 </div>
+
 <script>
 const KEY = 'sk-85e4143f517248d382c8dc27d6b552bf';
-const steps = ['s1','s2','s3','s4','s5','s6'];
-let timer = null;
+const STEPS = ['s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+let stepTimer = null;
+let rawResult = {};
 
 function startSteps() {
   let i = 0;
-  steps.forEach(s => document.getElementById(s).className = 'dot-step');
-  timer = setInterval(() => {
-    if (i < steps.length) {
-      if (i > 0) document.getElementById(steps[i-1]).className = 'dot-step done';
-      document.getElementById(steps[i]).className = 'dot-step on';
+  STEPS.forEach(s => { const el = document.getElementById(s); if(el) el.className = 'dot-step'; });
+  stepTimer = setInterval(() => {
+    if (i < STEPS.length) {
+      if (i > 0) { const prev = document.getElementById(STEPS[i-1]); if(prev) prev.className = 'dot-step done'; }
+      const cur = document.getElementById(STEPS[i]); if(cur) cur.className = 'dot-step on';
       i++;
     }
-  }, 700);
+  }, 600);
 }
 
 function stopSteps() {
-  clearInterval(timer);
-  steps.forEach(s => document.getElementById(s).className = 'dot-step done');
+  clearInterval(stepTimer);
+  STEPS.forEach(s => { const el = document.getElementById(s); if(el) el.className = 'dot-step done'; });
+}
+
+function clearAll() {
+  document.getElementById('inp').value = '';
+  document.getElementById('resultWrap').classList.remove('active');
+  document.getElementById('errBox').className = 'error-box';
 }
 
 function fmt(t) {
@@ -153,87 +367,197 @@ function fmt(t) {
   t = String(t);
   return t
     .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-    .replace(/^[-•]\s(.+)$/gm, '<div style="display:flex;gap:6px;margin:3px 0"><span style="opacity:0.4;flex-shrink:0">▸</span><span>$1</span></div>')
-    .replace(/^(\d+)\.\s(.+)$/gm, '<div style="display:flex;gap:6px;margin:3px 0"><span style="opacity:0.5;flex-shrink:0">$1.</span><span>$2</span></div>');
+    .replace(/^[-•]\s(.+)$/gm, '<div class="line"><span class="line-dot"></span><span>$1</span></div>')
+    .replace(/^(\d+)\.\s(.+)$/gm, '<div class="line"><span class="line-arrow">$1.</span><span>$2</span></div>')
+    .replace(/^(第\d天[：:].+)$/gm, '<div style="margin:4px 0"><b>$1</b></div>');
 }
 
-function makeCard(icon, label, content, full, delay) {
-  return '<div class="card'+(full?' full':'')+'" style="animation-delay:'+delay+'s"><div class="card-top"><div class="card-icon">'+icon+'</div><div class="card-label">'+label+'</div></div><div class="card-content">'+fmt(content)+'</div></div>';
+function setCard(id, content) {
+  const el = document.getElementById('content-' + id);
+  if (el) el.innerHTML = fmt(content);
 }
 
-function makeScoreCard(scores) {
-  const fields = [['内容质量','content'],['定位清晰','position'],['互动转化','interact'],['流量潜力','traffic'],['变现成熟','monetize']];
-  let rows = fields.map(function(f) {
-    const v = scores[f[1]] || 0;
-    return '<div class="score-row"><div class="score-name">'+f[0]+'</div><div class="score-bar"><div class="score-fill" data-w="'+v+'"></div></div><div class="score-val">'+v+'</div></div>';
-  }).join('');
-  return '<div class="card" style="animation-delay:0.05s"><div class="total-score"><div class="total-num" id="totalNum">0</div><div class="total-label">综合评分</div></div>'+rows+'</div>';
+function renderScores(scores) {
+  const fields = [
+    ['内容质量','content'],
+    ['定位清晰','position'],
+    ['互动转化','interact'],
+    ['流量潜力','traffic'],
+    ['变现成熟','monetize'],
+    ['人设强度','persona']
+  ];
+  const total = Math.round(fields.reduce((s,[,k]) => s + (scores[k]||0), 0) / fields.length);
+  let html = '';
+  fields.forEach(([n,k]) => {
+    const v = scores[k] || 0;
+    html += `<div class="score-row"><div class="score-name">${n}</div><div class="score-bar"><div class="score-fill" data-w="${v}"></div></div><div class="score-val">${v}</div></div>`;
+  });
+  document.getElementById('scoreBars').innerHTML = html;
+
+  const level = total >= 80 ? '优质' : total >= 60 ? '成长' : total >= 40 ? '起步' : '萌新';
+  const potential = total >= 75 ? '高' : total >= 55 ? '中' : '待挖';
+  document.getElementById('levelText').textContent = level;
+  document.getElementById('potentialText').textContent = potential;
+
+  setTimeout(() => {
+    document.querySelectorAll('.score-fill').forEach(el => {
+      el.style.width = el.getAttribute('data-w') + '%';
+    });
+    let cur = 0;
+    const t = setInterval(() => {
+      cur = Math.min(cur + 2, total);
+      const el = document.getElementById('totalNum');
+      if (el) el.textContent = cur;
+      if (cur >= total) clearInterval(t);
+    }, 25);
+  }, 400);
+}
+
+function renderJiepian(data) {
+  if (!data || !Array.isArray(data)) return;
+  let html = '';
+  data.forEach((block, i) => {
+    html += `<div class="script-block" style="animation-delay:${0.05*i}s">
+      <div class="script-tag">${block.part || ('第'+(i+1)+'部分')}</div>
+      <div class="script-text">${block.content || ''}</div>
+      ${block.tip ? `<div class="script-tip">💡 ${block.tip}</div>` : ''}
+    </div>`;
+  });
+  const el = document.getElementById('content-jiepian');
+  if (el) el.innerHTML = html;
+}
+
+function renderHooks(data) {
+  if (!data || !Array.isArray(data)) return;
+  let html = '';
+  data.forEach((hook, i) => {
+    html += `<div class="script-block" style="animation-delay:${0.05*i}s">
+      <div class="script-tag">${hook.type || ('钩子'+(i+1))}</div>
+      <div class="script-text">"${hook.text || ''}"</div>
+      ${hook.reason ? `<div class="script-tip">▸ ${hook.reason}</div>` : ''}
+    </div>`;
+  });
+  const el = document.getElementById('content-hooks');
+  if (el) el.innerHTML = html;
+}
+
+function copyCard(id) {
+  const el = document.getElementById('content-' + id);
+  if (!el) return;
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.closest('.card, .jiepian-card')?.querySelector('.copy-btn');
+    if (btn) { const orig = btn.textContent; btn.textContent = '已复制'; setTimeout(() => btn.textContent = orig, 1500); }
+  }).catch(() => {});
+}
+
+function copyAll() {
+  const ids = ['positioning','traffic','content','persona','jiepian','hooks','viral','monetize','competitor','plan'];
+  let text = '【抖音阳鱼AI分析报告】\n\n';
+  ids.forEach(id => {
+    const el = document.getElementById('content-' + id);
+    if (el) { const label = el.closest('.card, .jiepian-card')?.querySelector('.card-label')?.textContent; text += (label ? `【${label}】\n` : '') + (el.innerText||'') + '\n\n'; }
+  });
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-all-btn');
+    if (btn) { btn.textContent = '已复制！'; setTimeout(() => btn.textContent = '复制全部报告', 2000); }
+  }).catch(() => {});
 }
 
 async function runAI() {
   const val = document.getElementById('inp').value.trim();
   if (!val) {
     document.getElementById('inp').style.borderColor = 'rgba(255,80,80,0.4)';
-    setTimeout(function(){ document.getElementById('inp').style.borderColor = ''; }, 2000);
+    setTimeout(() => document.getElementById('inp').style.borderColor = '', 2000);
     return;
   }
   const btn = document.getElementById('btn');
-  btn.disabled = true;
-  btn.textContent = '分析中...';
+  btn.disabled = true; btn.textContent = '深度分析中...';
   document.getElementById('errBox').className = 'error-box';
-  document.getElementById('grid').innerHTML = '';
-  document.getElementById('pay').style.display = 'none';
+  document.getElementById('resultWrap').classList.remove('active');
   document.getElementById('loading').className = 'loading active';
   startSteps();
 
-  const prompt = '你是资深抖音代运营专家。根据以下账号信息深度分析：\n\n账号信息：' + val + '\n\n严格返回JSON格式，不要输出任何其他内容，只返回JSON：\n{"scores":{"content":75,"position":80,"interact":60,"traffic":70,"monetize":50},"positioning":"账号定位分析内容","traffic":"流量问题\\n- 问题1\\n- 问题2\\n- 问题3","content":"内容问题\\n- 问题1\\n- 问题2\\n- 问题3","viral":"爆款选题\\n🔥 选题1\\n⚡ 选题2\\n🌱 选题3\\n🔥 选题4\\n⚡ 选题5\\n🌱 选题6","monetize":"变现路径\\n- 方式1\\n- 方式2\\n- 方式3\\n- 方式4","plan":"7天计划\\n第1天：内容\\n第2天：内容\\n第3天：内容\\n第4天：内容\\n第5天：内容\\n第6天：内容\\n第7天：内容"}';
+  const prompt = `你是顶级抖音代运营专家，拥有10年经验，服务过500+账号。请对以下账号进行深度分析，要求专业、具体、可落地，避免泛泛而谈。
+
+账号信息：${val}
+
+请严格返回以下JSON格式，不要输出任何其他内容：
+{
+  "scores": {
+    "content": 内容质量分(0-100整数),
+    "position": 定位清晰度分(0-100整数),
+    "interact": 互动转化分(0-100整数),
+    "traffic": 流量潜力分(0-100整数),
+    "monetize": 变现成熟度分(0-100整数),
+    "persona": 人设强度分(0-100整数)
+  },
+  "positioning": "深度定位分析：赛道判断+目标人群画像+账号调性+竞争壁垒+核心差异化，200字以内，具体有据",
+  "traffic": "流量问题诊断：列出4-5个具体问题，每条以-开头，包含原因和影响",
+  "content": "内容问题分析：列出4-5个具体问题，每条以-开头，指出改进方向",
+  "persona": "人设打造建议：包含人设核心词、差异化标签、口头禅设计、视觉风格、记忆符号，具体可执行",
+  "jiepian": [
+    {"part": "第1秒-3秒（黄金开场）", "content": "具体开场结构和话术设计", "tip": "为什么这样设计"},
+    {"part": "第4秒-15秒（价值铺垫）", "content": "内容展开方式和节奏控制", "tip": "关键技巧"},
+    {"part": "第16秒-30秒（高潮冲突）", "content": "冲突点设计和情绪推进", "tip": "爆款核心"},
+    {"part": "第31秒-45秒（干货输出）", "content": "核心价值交付方式", "tip": "留住用户"},
+    {"part": "最后5秒（行动引导）", "content": "CTA设计和互动钩子", "tip": "转化技巧"}
+  ],
+  "hooks": [
+    {"type": "痛点钩子", "text": "具体话术模板", "reason": "为什么有效"},
+    {"type": "好奇钩子", "text": "具体话术模板", "reason": "为什么有效"},
+    {"type": "反常识钩子", "text": "具体话术模板", "reason": "为什么有效"},
+    {"type": "数字钩子", "text": "具体话术模板", "reason": "为什么有效"},
+    {"type": "身份钩子", "text": "具体话术模板", "reason": "为什么有效"}
+  ],
+  "viral": "爆款选题机会点：列出8-10个具体选题，每条前标🔥(高热)或⚡(中热)或🌱(新兴)，包含选题理由",
+  "monetize": "变现路径规划：列出4-5条变现方式，每条以-开头，包含操作方法和预估收益",
+  "competitor": "竞品对标策略：分析同赛道竞争格局，找出3个差异化切入点，以及需要学习和避免的做法",
+  "plan": "7天起号执行计划：\\n第1天：任务名称 - 具体执行内容\\n第2天：任务名称 - 具体执行内容\\n第3天：任务名称 - 具体执行内容\\n第4天：任务名称 - 具体执行内容\\n第5天：任务名称 - 具体执行内容\\n第6天：任务名称 - 具体执行内容\\n第7天：任务名称 - 具体执行内容"
+}`;
 
   try {
     const res = await fetch('https://api.deepseek.com/chat/completions', {
       method: 'POST',
       headers: {'Content-Type':'application/json','Authorization':'Bearer '+KEY},
-      body: JSON.stringify({model:'deepseek-chat',messages:[{role:'user',content:prompt}],temperature:0.7,max_tokens:2000})
+      body: JSON.stringify({
+        model: 'deepseek-reasoner',
+        messages: [{role:'user',content:prompt}],
+        max_tokens: 4000
+      })
     });
+
     if (!res.ok) {
-      const errData = await res.json().catch(function(){ return {}; });
+      const errData = await res.json().catch(() => ({}));
       throw new Error('请求失败 ' + res.status + (errData.error ? ': ' + errData.error.message : ''));
     }
+
     const data = await res.json();
-    const raw = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content ? data.choices[0].message.content : '';
+    const raw = data.choices?.[0]?.message?.content || '';
     const m = raw.match(/\{[\s\S]*\}/);
-    if (!m) throw new Error('返回格式异常，请重试');
+    if (!m) throw new Error('AI返回格式异常，请重试');
     const r = JSON.parse(m[0]);
+    rawResult = r;
 
     stopSteps();
     document.getElementById('loading').className = 'loading';
+    document.getElementById('resultWrap').classList.add('active');
 
-    let html = makeScoreCard(r.scores || {});
-    html += makeCard('🎯', '账号定位分析', r.positioning, false, 0.1);
-    html += makeCard('⚠️', '流量问题诊断', r.traffic, false, 0.15);
-    html += makeCard('📝', '内容问题分析', r.content, false, 0.2);
-    html += makeCard('🚀', '爆款机会点', r.viral, true, 0.25);
-    html += makeCard('💰', '变现路径规划', r.monetize, true, 0.3);
-    html += makeCard('📅', '7天起号计划', r.plan, true, 0.35);
-    document.getElementById('grid').innerHTML = html;
-    document.getElementById('pay').style.display = 'block';
+    renderScores(r.scores || {});
+    setCard('positioning', r.positioning);
+    setCard('traffic', r.traffic);
+    setCard('content', r.content);
+    setCard('persona', r.persona);
+    renderJiepian(r.jiepian);
+    renderHooks(r.hooks);
+    setCard('viral', r.viral);
+    setCard('monetize', r.monetize);
+    setCard('competitor', r.competitor);
+    setCard('plan', r.plan);
 
-    setTimeout(function() {
-      document.querySelectorAll('.score-fill').forEach(function(el) {
-        el.style.width = el.getAttribute('data-w') + '%';
-      });
-      const scores = r.scores || {};
-      const fields = ['content','position','interact','traffic','monetize'];
-      const avg = Math.round(fields.reduce(function(s,k){ return s+(scores[k]||0); }, 0) / fields.length);
-      let cur = 0;
-      const t = setInterval(function() {
-        cur = Math.min(cur + 2, avg);
-        const el = document.getElementById('totalNum');
-        if (el) el.textContent = cur;
-        if (cur >= avg) clearInterval(t);
-      }, 30);
-    }, 300);
-
-    document.getElementById('grid').scrollIntoView({behavior:'smooth'});
+    setTimeout(() => {
+      document.getElementById('resultWrap').scrollIntoView({behavior:'smooth', block:'start'});
+    }, 200);
 
   } catch(e) {
     stopSteps();
@@ -243,11 +567,11 @@ async function runAI() {
     eb.className = 'error-box active';
   } finally {
     btn.disabled = false;
-    btn.textContent = '⚡ 启动AI分析系统';
+    btn.textContent = '⚡ 启动AI深度分析';
   }
 }
 
-document.getElementById('inp').addEventListener('keydown', function(e) {
+document.getElementById('inp').addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.ctrlKey) runAI();
 });
 </script>
